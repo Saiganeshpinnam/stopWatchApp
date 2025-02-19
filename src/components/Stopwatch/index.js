@@ -24,7 +24,7 @@ class Stopwatch extends Component {
 
   incrementTimeElapsedInSeconds = () => {
     this.setState(prevState => ({
-      timeElapsedInSeconds: prevState.timeElapsedInSeconds + 3,
+      timeElapsedInSeconds: prevState.timeElapsedInSeconds + 1,
     }))
   }
 
@@ -76,7 +76,7 @@ class Stopwatch extends Component {
     return (
       <div className="bg-container">
         <h1 className="stopwatch-heading">Stopwatch</h1>
-        <div className="sample-container">
+        <div className="card-container">
           <div className="timer-card-container">
             <div className="timer-logo-container">
               <img
