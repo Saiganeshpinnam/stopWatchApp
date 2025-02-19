@@ -1,6 +1,8 @@
 // Write your code here
 import {Component} from 'react'
 
+import './index.css'
+
 class Stopwatch extends Component {
   state = {
     timerInMinutes: 0,
@@ -35,7 +37,7 @@ class Stopwatch extends Component {
     const stringifiedMinutes = timerInMinutes > 9 ? minutes : `0${minutes}`
     const stringifiedSeconds = seconds > 9 ? seconds : `0${seconds}`
 
-    return `${stringifiedMinutes} : ${stringifiedSeconds}`
+    return `${stringifiedMinutes}:${stringifiedSeconds}`
   }
 
   onIncreaseTime = () => {
@@ -72,17 +74,44 @@ class Stopwatch extends Component {
 
   render() {
     return (
-      <div>
-        <h1>{this.getFormattedTime()}</h1>
-        <button type="button" onClick={this.onStartTimer}>
-          Start
-        </button>
-        <button type="button" onClick={this.onStopTimer}>
-          Stop
-        </button>
-        <button type="button" onClick={this.onResetTimer}>
-          Reset
-        </button>
+      <div className="bg-container">
+        <h1 className="stopwatch-heading">Stopwatch</h1>
+        <div className="sample-container">
+          <div className="timer-card-container">
+            <div className="timer-logo-container">
+              <img
+                src="https://assets.ccbp.in/frontend/react-js/stopwatch-timer.png"
+                alt="stopwatch"
+                className="timer-icon"
+              />
+              <h1>Timer</h1>
+            </div>
+            <h1 className="formatted-time">{this.getFormattedTime()}</h1>
+            <div className="buttons-container">
+              <button
+                type="button"
+                onClick={this.onStartTimer}
+                className="start-button"
+              >
+                Start
+              </button>
+              <button
+                type="button"
+                onClick={this.onStopTimer}
+                className="stop-button"
+              >
+                Stop
+              </button>
+              <button
+                type="button"
+                onClick={this.onResetTimer}
+                className="reset-button"
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
