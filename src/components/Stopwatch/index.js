@@ -29,15 +29,11 @@ class Stopwatch extends Component {
   getFormattedTime = () => {
     const {timerInMinutes, timeElapsedInSeconds} = this.state
 
-    const minutes = Math.floor(timeElapsedInSeconds/60) 
-    const seconds = timeElapsedInSeconds%60
+    const minutes = Math.floor(timeElapsedInSeconds / 60)
+    const seconds = timeElapsedInSeconds % 60
 
-    const stringifiedMinutes =
-      timerInMinutes > 9 ? minutes : `0${minutes}`
-    const stringifiedSeconds =
-      seconds > 9
-        ? seconds
-        : `0${seconds}`
+    const stringifiedMinutes = timerInMinutes > 9 ? minutes : `0${minutes}`
+    const stringifiedSeconds = seconds > 9 ? seconds : `0${seconds}`
 
     return `${stringifiedMinutes} : ${stringifiedSeconds}`
   }
@@ -54,12 +50,38 @@ class Stopwatch extends Component {
     }))
   }
 
+  onStopTimer = () => {
+    // this.setState(prevState => ({
+    //   timerInMinutes: prevState.timerInMinutes + 0,
+    //   timeElapsedInSeconds: prevState.timeElapsedInSeconds + 0,
+    // }))
+
+    clearInterval(this.IntervalId)
+    this.setState(prevState => ({
+      isTimerRunning: !prevState.isTimerRunning,
+    }))
+  }
+
+  onResetTimer = () => {
+    this.setState(prevState => ({
+      timerInMinutes: 0,
+      timeElapsedInSeconds: 0,
+    }))
+    clearInterval(this.IntervalId)
+  }
+
   render() {
     return (
       <div>
         <h1>{this.getFormattedTime()}</h1>
         <button type="button" onClick={this.onStartTimer}>
-          start
+          Start
+        </button>
+        <button type="button" onClick={this.onStopTimer}>
+          Stop
+        </button>
+        <button type="button" onClick={this.onResetTimer}>
+          Reset
         </button>
       </div>
     )
